@@ -1,0 +1,44 @@
+@{
+    ViewData["Title"] = "Registration";
+}
+
+@model Bank_Account.Models.TransactionViewModel
+
+@{
+    if (TempData["Error"] != null)
+    {
+<p>@TempData["Error"]</p>
+    }
+}
+
+<header style="display:inline-block;">
+<h1 style="display:inline-block;">Welcome, @ViewBag.UserInfo.first_name</h1>
+<span style="display:inline-block; margin-left:400px;">Current Balance :$ @ViewBag.UserInfo.amount</span>
+</header>
+
+<main>
+<form asp-controller="Account" asp-action="Transaction" method="post" >
+    <label asp-for="amount"></label><input type="number" asp-for="amount" name="Amount"/><span asp-validation-for="amount"></span>
+    <input type="submit" value="SUBMIT">
+</form>
+</main>
+
+<table>
+    <thead>
+        <tr>
+            <th>Amount</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+@{
+    foreach(var wd in ViewBag.UserInfo.Transactions)
+    {
+        <tr>
+            <td>$@wd.amount</td>
+            <td>@wd.transaction_date.ToString("MMM dd yyyy")</td>
+        </tr>
+    }
+}
+    </tbody>
+</table>

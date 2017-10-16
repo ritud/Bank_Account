@@ -1,0 +1,11 @@
+@model Bank_Account.Models.RegisterViewModel
+
+<a href="/">Need To Register</a> 
+
+
+<h2>Login</h2>
+<form asp-controller="Home" asp-action="process" method="post" style="display:inline-block">
+    <label asp-for="email"></label><input asp-for="email"/><span asp-validation-for="email"></span>
+    <label asp-for="password"></label><input asp-for="password"/><span asp-validation-for="password"></span>
+    <p><button type="submit">Login</button></p>
+</form>
